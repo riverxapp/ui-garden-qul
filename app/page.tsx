@@ -53,23 +53,26 @@ export default function Home() {
           primaryAction={profile.ctas.primary}
           secondaryAction={profile.ctas.secondary}
         />
-        <section id="about" className="container mx-auto max-w-2xl py-16" aria-label="About">
-          <h2 className="text-2xl font-bold mb-4">About</h2>
-          <p className="text-base text-muted-foreground">
+        <section id="about" className="container mx-auto max-w-2xl py-16" aria-labelledby="about-title">
+          <h2 id="about-title" className="text-2xl font-bold mb-4">About Me</h2>
+          <p className="text-base text-muted-foreground leading-relaxed">
             {profile.role}. {profile.subheadline}
           </p>
         </section>
 
-        <section id="projects" className="container mx-auto py-16" aria-label="Projects">
-          <h2 className="text-2xl font-bold mb-8">Projects</h2>
+        <section id="projects" className="container mx-auto py-16" aria-labelledby="projects-title">
+          <h2 id="projects-title" className="text-2xl font-bold mb-8">Projects</h2>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {profile.projects.map((proj) => (
-              <div key={proj.title} className="rounded-lg border bg-card shadow p-6 flex flex-col h-full">
+              <article
+                key={proj.title}
+                className="rounded-lg border bg-card shadow p-6 flex flex-col h-full focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2"
+              >
                 <h3 className="text-lg font-semibold mb-2">{proj.title}</h3>
-                <p className="text-sm mb-4 text-muted-foreground">{proj.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
+                <p className="text-sm mb-4 text-muted-foreground leading-snug">{proj.description}</p>
+                <div className="flex flex-wrap gap-2 mb-4" aria-label="Project technologies">
                   {proj.tags.map((tag) => (
-                    <Badge key={tag}>{tag}</Badge>
+                    <Badge key={tag} variant="outline">{tag}</Badge>
                   ))}
                 </div>
                 <a
@@ -79,15 +82,15 @@ export default function Home() {
                 >
                   View project
                 </a>
-              </div>
+              </article>
             ))}
           </div>
         </section>
 
-        <section id="contact" className="container mx-auto max-w-2xl py-16 flex flex-col items-center text-center" aria-label="Contact">
-          <h2 className="text-2xl font-bold mb-4">Contact</h2>
-          <p className="mb-8 text-base text-muted-foreground">Interested in working together or just want to connect?</p>
-          <div className="flex gap-4">
+        <section id="contact" className="container mx-auto max-w-2xl py-16 flex flex-col items-center text-center" aria-labelledby="contact-title">
+          <h2 id="contact-title" className="text-2xl font-bold mb-4">Get In Touch</h2>
+          <p className="mb-8 text-base text-muted-foreground max-w-md leading-relaxed">Interested in working together or just want to connect? Reach out via email or LinkedIn.</p>
+          <div className="flex gap-4 flex-wrap justify-center">
             <Button asChild>
               <a href={profile.links.email} aria-label="Send email">Email Me</a>
             </Button>
@@ -97,6 +100,16 @@ export default function Home() {
           </div>
         </section>
       </main>
+
+      <style>{`
+        main {
+          scroll-margin-top: 96px;
+        }
+        a:focus-visible {
+          outline: 2px solid var(--primary);
+          outline-offset: 2px;
+        }
+      `}</style>
     </div>
   );
 }

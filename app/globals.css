@@ -68,7 +68,20 @@
 @layer components {
   /* Hero Section Styles */
   section.flex.flex-1.flex-col.items-center.justify-center.px-6.text-center {
-    @apply max-w-5xl mx-auto min-h-[70vh] px-6 sm:px-10 py-20;
+    max-width: 80rem; /* max-w-5xl */
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 70vh;
+    padding-left: 1.5rem; /* px-6 */
+    padding-right: 1.5rem;
+    padding-top: 5rem; /* py-20 */
+    padding-bottom: 5rem;
+  }
+  @media (min-width: 640px) {
+    section.flex.flex-1.flex-col.items-center.justify-center.px-6.text-center {
+      padding-left: 2.5rem; /* sm:px-10 */
+      padding-right: 2.5rem;
+    }
   }
 
   section.flex.flex-1.flex-col.items-center.justify-center.px-6.text-center > h1 {

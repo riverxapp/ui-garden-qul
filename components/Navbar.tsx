@@ -39,7 +39,7 @@ export function Navbar({
               key={link.href}
               href={link.href}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noreferrer noopener"
               className={baseClass}
             >
               {link.label}

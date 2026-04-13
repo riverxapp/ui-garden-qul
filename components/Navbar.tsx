@@ -1,3 +1,5 @@
+"use client";
+
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 export type NavLink = { label: string; href: string };
@@ -16,7 +18,10 @@ const defaultLinks: NavLink[] = [
 
 const defaultName = "Panda";
 
-export const Navbar = ({ links = defaultLinks, name = defaultName }: NavbarProps) =&gt; {
+export const Navbar = ({
+  links = defaultLinks,
+  name = defaultName,
+}: NavbarProps) =&gt; {
   return (
     <header classname="flex items-center justify-between px-10 pt-8">
       <nav aria-label="Primary navigation" classname="flex gap-8">

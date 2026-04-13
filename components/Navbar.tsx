@@ -9,12 +9,11 @@ export type NavLink = {
   external?: boolean;
 };
 
-export type NavbarProps = {
+export interface NavbarProps {
   links?: NavLink[];
   name?: string;
-};
+}
 
-const defaultName = "YourBrand";
 const defaultLinks: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Features", href: "#features" },
@@ -22,32 +21,44 @@ const defaultLinks: NavLink[] = [
   { label: "Contact", href: "#contact" },
 ];
 
-export default function Navbar({
+const defaultName = "YourBrand";
+
+export function Navbar({
   links = defaultLinks,
   name = defaultName,
 }: NavbarProps) {
   return (
-    <header classname="flex items-center justify-between px-10 pt-8">
-      <nav aria-label="Primary navigation" classname="flex gap-8">
-        {links.map((link) =&gt; {
+    <header className="flex items-center justify-between px-10 pt-8">
+      <nav aria-label="Primary navigation" className="flex gap-8">
+        {links.map((link) => {
           const isExternal = link.external || /^https?:\/\//.test(link.href);
+          const baseClass =
+            "text-[15px] font-medium hover:underline underline-offset-4 transition-colors";
           return isExternal ? (
-            <a key="{link.href}" href="{link.href}" target="_blank" rel="noopener noreferrer" classname="text-[15px] font-medium hover:underline underline-offset-4 transition-colors">
+            <a
+              key={link.href}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={baseClass}
+            >
               {link.label}
             </a>
           ) : (
-            <link key="{link.href}" href="{link.href}" classname="text-[15px] font-medium hover:underline underline-offset-4 transition-colors">
+            <Link key={link.href} href={link.href} className={baseClass}>
               {link.label}
-            
+            </Link>
           );
         })}
       </nav>
 
-      <link href="/" aria-label="Homepage" classname="text-[22px] font-bold tracking-tight">
+      <Link href="/" aria-label="Homepage" className="text-[22px] font-bold tracking-tight">
         {name}
-      
+      </Link>
 
-      <themetoggle>
-    </themetoggle></header>
+      <ThemeToggle />
+    </header>
   );
 }
+
+export default Navbar;
